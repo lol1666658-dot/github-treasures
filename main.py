@@ -2,10 +2,10 @@ import os
 from fastapi import FastAPI, HTTPException, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 
-app = FastAPI(title="GitHub Treasures Directory")
+app = FastAPI(title="Yevgeny Shman Directory")
 
 # סיסמת מנהל ברירת מחדל
-ADMIN_KEY = os.getenv("ADMIN_KEY", "WWww332211!")
+ADMIN_KEY = os.getenv("ADMIN_KEY", "admin123")
 
 # מאגר הכלים ההתחלתי
 TREASURES = {
@@ -41,11 +41,11 @@ async def home(search: str = ""):
     <html lang="he" dir="rtl">
     <head>
         <meta charset="UTF-8">
-        <title>GitHub Treasures</title>
+        <title>יבגני שמן</title>
     </head>
     <body style="background: #030712; color: #f9fafb; font-family: Arial, sans-serif; padding: 40px;">
         <div style="max-width: 800px; margin: 0 auto;">
-            <h1 style="text-align: center; font-size: 40px; margin-bottom: 10px;">אוצרות הקוד הפתוח <span style="color: #3b82f6;">בפשטות</span></h1>
+            <h1 style="text-align: center; font-size: 40px; margin-bottom: 10px;">יבגני שמן</h1>
             <p style="text-align: center; color: #9ca3af; margin-bottom: 30px;">הסברים בעברית וצעדים מעשיים לכל כלי.</p>
             
             <form method="get" action="/" style="text-align: center; margin-bottom: 40px;">
@@ -146,4 +146,5 @@ async def add_tool(
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
